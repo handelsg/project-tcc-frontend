@@ -1,15 +1,18 @@
 
 import React from 'react';
 import { Video, Upload, Calendar, Clock, Settings } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import FeatureCard from '../components/FeatureCard';
 
 const Index = () => {
+  const navigate = useNavigate();
+
   const features = [
     {
       icon: Video,
       title: "Nova reunião",
-      onClick: () => console.log("Nova reunião clicked")
+      onClick: () => navigate("/nova-reuniao")
     },
     {
       icon: Upload,

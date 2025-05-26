@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import AppSidebar from "./components/AppSidebar";
 import Index from "./pages/Index";
+import NovaReuniao from "./pages/NovaReuniao";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const App = () => (
             <SidebarInset>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/nova-reuniao" element={<NovaReuniao />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

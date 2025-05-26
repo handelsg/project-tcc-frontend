@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { ArrowLeft, ArrowRight, Home, Video, Upload, Calendar, Clock, Settings } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Sidebar,
   SidebarContent,
@@ -14,25 +15,30 @@ import {
 
 const AppSidebar = () => {
   const { state, toggleSidebar } = useSidebar();
+  const navigate = useNavigate();
+  const location = useLocation();
   const isCollapsed = state === 'collapsed';
 
   const menuItems = [
     {
       title: "Início",
       icon: Home,
-      isActive: true,
+      path: "/",
     },
     {
       title: "Nova reunião",
       icon: Video,
+      path: "/nova-reuniao",
     },
     {
       title: "Upload de reunião",
       icon: Upload,
+      path: "/upload-reuniao",
     },
     {
       title: "Agendar reunião",
       icon: Calendar,
+      path: "/agendar-reuniao",
     },
   ];
 
@@ -40,12 +46,18 @@ const AppSidebar = () => {
     {
       title: "Histórico",
       icon: Clock,
+      path: "/historico",
     },
     {
       title: "Configurações",
       icon: Settings,
+      path: "/configuracoes",
     },
   ];
+
+  const handleMenuClick = (path: string) => {
+    navigate(path);
+  };
 
   return (
     <div 
@@ -83,12 +95,13 @@ const AppSidebar = () => {
             {menuItems.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
-                  className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg transition-all ${
-                    item.isActive
+                  className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg transition-all cursor-pointer ${
+                    location.pathname === item.path
                       ? 'bg-white text-[#403E8C] shadow-sm'
                       : 'text-white hover:bg-white/10'
                   } ${isCollapsed ? 'justify-center' : ''}`}
                   tooltip={isCollapsed ? item.title : undefined}
+                  onClick={() => handleMenuClick(item.path)}
                 >
                   <item.icon className="w-5 h-5 flex-shrink-0" />
                   {!isCollapsed && <span className="font-medium">{item.title}</span>}
@@ -103,10 +116,13 @@ const AppSidebar = () => {
             {bottomMenuItems.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton 
-                  className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg text-white hover:bg-white/10 transition-all ${
-                    isCollapsed ? 'justify-center' : ''
-                  }`}
+                  className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg transition-all cursor-pointer ${
+                    location.pathname === item.path
+                      ? 'bg-white text-[#403E8C] shadow-sm'
+                      : 'text-white hover:bg-white/10'
+                  } ${isCollapsed ? 'justify-center' : ''}`}
                   tooltip={isCollapsed ? item.title : undefined}
+                  onClick={() => handleMenuClick(item.path)}
                 >
                   <item.icon className="w-5 h-5 flex-shrink-0" />
                   {!isCollapsed && <span className="font-medium">{item.title}</span>}

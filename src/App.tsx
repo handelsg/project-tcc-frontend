@@ -10,6 +10,7 @@ import NovaReuniao from "./pages/NovaReuniao";
 import UploadReuniao from "./pages/UploadReuniao";
 import NotFound from "./pages/NotFound";
 import AgendarReuniao from "./pages/AgendarReuniao";
+import Historico from "./pages/Historico";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
               <Route path="/nova-reuniao" element={<NovaReuniao />} />
               <Route path="/upload-reuniao" element={<UploadReuniao />} />
               <Route path="/agendar-reuniao" element={<AgendarReuniao />} />
+              <Route path="/historico" element={<Historico />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

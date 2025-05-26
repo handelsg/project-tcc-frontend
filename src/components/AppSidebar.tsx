@@ -61,8 +61,7 @@ const AppSidebar = () => {
 
   return (
     <div 
-      className="h-full"
-      style={{ backgroundColor: '#403E8C' }}
+      className="h-full bg-gradient-to-b from-slate-800 to-slate-900"
     >
       <Sidebar 
         className="border-none !bg-transparent"
@@ -78,7 +77,7 @@ const AppSidebar = () => {
             )}
             <button 
               onClick={toggleSidebar}
-              className="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors ml-auto"
+              className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors ml-auto backdrop-blur-sm"
             >
               {isCollapsed ? (
                 <ArrowRight className="w-5 h-5 text-white" />
@@ -97,8 +96,8 @@ const AppSidebar = () => {
                 <SidebarMenuButton
                   className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg transition-all cursor-pointer ${
                     location.pathname === item.path
-                      ? 'bg-white text-[#403E8C] shadow-sm'
-                      : 'text-white hover:bg-white/10'
+                      ? 'bg-blue-500/20 text-blue-100 shadow-sm border border-blue-400/30'
+                      : 'text-white hover:bg-white/10 hover:backdrop-blur-sm'
                   } ${isCollapsed ? 'justify-center' : ''}`}
                   tooltip={isCollapsed ? item.title : undefined}
                   onClick={() => handleMenuClick(item.path)}
@@ -118,8 +117,8 @@ const AppSidebar = () => {
                 <SidebarMenuButton 
                   className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg transition-all cursor-pointer ${
                     location.pathname === item.path
-                      ? 'bg-white text-[#403E8C] shadow-sm'
-                      : 'text-white hover:bg-white/10'
+                      ? 'bg-blue-500/20 text-blue-100 shadow-sm border border-blue-400/30'
+                      : 'text-white hover:bg-white/10 hover:backdrop-blur-sm'
                   } ${isCollapsed ? 'justify-center' : ''}`}
                   tooltip={isCollapsed ? item.title : undefined}
                   onClick={() => handleMenuClick(item.path)}

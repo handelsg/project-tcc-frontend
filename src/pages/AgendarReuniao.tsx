@@ -68,11 +68,13 @@ const AgendarReuniao = () => {
                       <Button
                         variant="outline"
                         className={cn(
-                          "w-full justify-start text-left font-normal h-12 bg-indigo-600 text-white hover:bg-indigo-700 border-indigo-600 rounded-lg",
-                          !date && "text-white"
+                          "w-full justify-start text-left font-normal h-12 bg-white border-gray-300 text-gray-900 hover:bg-gray-50 rounded-lg",
+                          !date && "text-gray-500"
                         )}
                       >
-                        <CalendarIcon className="mr-3 h-5 w-5" />
+                        <div className="mr-3 h-8 w-8 bg-indigo-600 rounded flex items-center justify-center">
+                          <CalendarIcon className="h-4 w-4 text-white" />
+                        </div>
                         {date ? format(date, "dd/MM/yyyy") : "00/00/0000"}
                       </Button>
                     </PopoverTrigger>
@@ -94,14 +96,16 @@ const AgendarReuniao = () => {
                     Horário
                   </Label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <Clock className="h-5 w-5 text-white" />
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <div className="h-8 w-8 bg-indigo-600 rounded flex items-center justify-center">
+                        <Clock className="h-4 w-4 text-white" />
+                      </div>
                     </div>
                     <Input
                       type="time"
                       value={time}
                       onChange={(e) => setTime(e.target.value)}
-                      className="h-12 pl-12 bg-indigo-600 border-indigo-600 text-white placeholder-white rounded-lg"
+                      className="h-12 pl-14 bg-white border-gray-300 text-gray-900 placeholder-gray-500 rounded-lg"
                       placeholder="00:00"
                     />
                   </div>
@@ -121,7 +125,7 @@ const AgendarReuniao = () => {
                     type="url"
                     value={meetingLink}
                     onChange={(e) => setMeetingLink(e.target.value)}
-                    placeholder="Placeholder"
+                    placeholder="Insira o link da reunião aqui"
                     className="h-12 pl-12 pr-12 border-gray-300 rounded-lg"
                   />
                   <div className="absolute inset-y-0 right-0 pr-1 flex items-center">

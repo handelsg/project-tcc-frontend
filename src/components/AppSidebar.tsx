@@ -70,9 +70,9 @@ const AppSidebar = () => {
         <SidebarHeader className="p-6">
           <div className="flex items-center justify-between">
             {!isCollapsed && (
-              <div className="text-white">
+              <div className="text-emerald-200">
                 <div className="text-xl font-bold bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent">HS</div>
-                <div className="text-sm opacity-90 text-emerald-100">Handel Santana</div>
+                <div className="text-sm opacity-90 text-emerald-200">Handel Santana</div>
               </div>
             )}
             <button 
@@ -80,9 +80,9 @@ const AppSidebar = () => {
               className="p-2.5 bg-emerald-600/30 rounded-xl hover:bg-emerald-600/50 transition-all ml-auto backdrop-blur-sm border border-emerald-500/20 shadow-lg"
             >
               {isCollapsed ? (
-                <ArrowRight className="w-5 h-5 text-emerald-100" />
+                <ArrowRight className="w-5 h-5 text-emerald-200" />
               ) : (
-                <ArrowLeft className="w-5 h-5 text-emerald-100" />
+                <ArrowLeft className="w-5 h-5 text-emerald-200" />
               )}
             </button>
           </div>
@@ -96,8 +96,8 @@ const AppSidebar = () => {
                 <SidebarMenuButton
                   className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all cursor-pointer shadow-md ${
                     location.pathname === item.path
-                      ? 'bg-emerald-500/30 text-emerald-50 shadow-lg border border-emerald-400/40 backdrop-blur-sm'
-                      : 'text-emerald-100 hover:bg-emerald-600/20 hover:backdrop-blur-sm hover:shadow-lg hover:border hover:border-emerald-500/20'
+                      ? 'bg-emerald-500/30 text-emerald-100 shadow-lg border border-emerald-400/40 backdrop-blur-sm'
+                      : 'text-emerald-200 hover:bg-emerald-600/20 hover:backdrop-blur-sm hover:shadow-lg hover:border hover:border-emerald-500/20'
                   } ${isCollapsed ? 'justify-center' : ''}`}
                   tooltip={isCollapsed ? item.title : undefined}
                   onClick={() => handleMenuClick(item.path)}
@@ -117,8 +117,8 @@ const AppSidebar = () => {
                 <SidebarMenuButton 
                   className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all cursor-pointer shadow-md ${
                     location.pathname === item.path
-                      ? 'bg-emerald-500/30 text-emerald-50 shadow-lg border border-emerald-400/40 backdrop-blur-sm'
-                      : 'text-emerald-100 hover:bg-emerald-600/20 hover:backdrop-blur-sm hover:shadow-lg hover:border hover:border-emerald-500/20'
+                      ? 'bg-emerald-500/30 text-emerald-100 shadow-lg border border-emerald-400/40 backdrop-blur-sm'
+                      : 'text-emerald-200 hover:bg-emerald-600/20 hover:backdrop-blur-sm hover:shadow-lg hover:border hover:border-emerald-500/20'
                   } ${isCollapsed ? 'justify-center' : ''}`}
                   tooltip={isCollapsed ? item.title : undefined}
                   onClick={() => handleMenuClick(item.path)}

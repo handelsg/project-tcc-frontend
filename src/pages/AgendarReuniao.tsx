@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { ArrowRight, Calendar as CalendarIcon, Clock, Search } from 'lucide-react';
+import { Calendar as CalendarIcon, Clock, Search, Link, ChevronRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 
@@ -50,7 +50,7 @@ const AgendarReuniao = () => {
           {/* Form Section */}
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
             <div className="mb-8">
-              <h2 className="text-2xl font-semibold text-indigo-600 mb-2">
+              <h2 className="text-xl font-medium text-gray-800 mb-6">
                 Insira os dados para agendar uma nova reunião
               </h2>
             </div>
@@ -59,8 +59,8 @@ const AgendarReuniao = () => {
               {/* Data e Horário */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Data */}
-                <div className="space-y-2">
-                  <Label className="text-base font-medium text-gray-700">
+                <div className="space-y-3">
+                  <Label className="text-sm font-medium text-gray-700">
                     Data
                   </Label>
                   <Popover>
@@ -68,11 +68,11 @@ const AgendarReuniao = () => {
                       <Button
                         variant="outline"
                         className={cn(
-                          "w-full justify-start text-left font-normal h-12 bg-indigo-600 text-white hover:bg-indigo-700 border-indigo-600",
+                          "w-full justify-start text-left font-normal h-12 bg-indigo-600 text-white hover:bg-indigo-700 border-indigo-600 rounded-lg",
                           !date && "text-white"
                         )}
                       >
-                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        <CalendarIcon className="mr-3 h-5 w-5" />
                         {date ? format(date, "dd/MM/yyyy") : "00/00/0000"}
                       </Button>
                     </PopoverTrigger>
@@ -89,19 +89,19 @@ const AgendarReuniao = () => {
                 </div>
 
                 {/* Horário */}
-                <div className="space-y-2">
-                  <Label className="text-base font-medium text-gray-700">
+                <div className="space-y-3">
+                  <Label className="text-sm font-medium text-gray-700">
                     Horário
                   </Label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <Clock className="h-4 w-4 text-white" />
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                      <Clock className="h-5 w-5 text-white" />
                     </div>
                     <Input
                       type="time"
                       value={time}
                       onChange={(e) => setTime(e.target.value)}
-                      className="h-12 pl-10 bg-indigo-600 border-indigo-600 text-white placeholder-white"
+                      className="h-12 pl-12 bg-indigo-600 border-indigo-600 text-white placeholder-white rounded-lg"
                       placeholder="00:00"
                     />
                   </div>
@@ -109,28 +109,26 @@ const AgendarReuniao = () => {
               </div>
 
               {/* Link da reunião */}
-              <div className="space-y-2">
-                <Label className="text-base font-medium text-gray-700">
+              <div className="space-y-3">
+                <Label className="text-sm font-medium text-gray-700">
                   Link da reunião
                 </Label>
                 <div className="relative">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <div className="w-4 h-4 bg-indigo-600 rounded-sm flex items-center justify-center">
-                      <div className="w-2 h-2 bg-white rounded-full"></div>
-                    </div>
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <Link className="h-5 w-5 text-gray-400" />
                   </div>
                   <Input
                     type="url"
                     value={meetingLink}
                     onChange={(e) => setMeetingLink(e.target.value)}
                     placeholder="Placeholder"
-                    className="h-12 pl-10 pr-12"
+                    className="h-12 pl-12 pr-12 border-gray-300 rounded-lg"
                   />
-                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                  <div className="absolute inset-y-0 right-0 pr-1 flex items-center">
                     <Button
                       type="button"
                       size="sm"
-                      className="h-8 w-8 p-0 bg-indigo-600 hover:bg-indigo-700"
+                      className="h-10 w-10 p-0 bg-indigo-600 hover:bg-indigo-700 rounded-lg"
                     >
                       <Search className="h-4 w-4" />
                     </Button>
@@ -139,12 +137,12 @@ const AgendarReuniao = () => {
               </div>
 
               {/* Recorrência */}
-              <div className="space-y-2">
-                <Label className="text-base font-medium text-gray-700">
+              <div className="space-y-3">
+                <Label className="text-sm font-medium text-gray-700">
                   Recorrência
                 </Label>
                 <Select value={recurrence} onValueChange={setRecurrence}>
-                  <SelectTrigger className="h-12">
+                  <SelectTrigger className="h-12 border-gray-300 rounded-lg">
                     <SelectValue placeholder="Nunca" />
                   </SelectTrigger>
                   <SelectContent>
@@ -157,12 +155,12 @@ const AgendarReuniao = () => {
               </div>
 
               {/* Botão Prosseguir */}
-              <div className="flex justify-end pt-6">
+              <div className="flex justify-end pt-8">
                 <Button
                   onClick={handleProsseguir}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 text-base font-medium"
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 text-base font-medium rounded-lg"
                 >
-                  <ArrowRight className="w-5 h-5 mr-2" />
+                  <ChevronRight className="w-5 h-5 mr-2" />
                   Prosseguir
                 </Button>
               </div>

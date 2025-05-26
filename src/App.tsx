@@ -8,6 +8,7 @@ import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import AppSidebar from "./components/AppSidebar";
 import Index from "./pages/Index";
 import NovaReuniao from "./pages/NovaReuniao";
+import UploadReuniao from "./pages/UploadReuniao";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +26,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/nova-reuniao" element={<NovaReuniao />} />
+                <Route path="/upload-reuniao" element={<UploadReuniao />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

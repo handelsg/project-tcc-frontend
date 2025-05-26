@@ -21,7 +21,7 @@ const Index = () => {
     {
       icon: Calendar,
       title: "Agendar reunião",
-      onClick: () => console.log("Agendar reunião clicked")
+      onClick: () => navigate("/agendar-reuniao")
     },
     {
       icon: Clock,

@@ -1,0 +1,177 @@
+
+import React, { useState } from 'react';
+import { SidebarTrigger } from '@/components/ui/sidebar';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { ArrowRight, Calendar as CalendarIcon, Clock, Search } from 'lucide-react';
+import { format } from 'date-fns';
+import { cn } from '@/lib/utils';
+
+const AgendarReuniao = () => {
+  const [date, setDate] = useState<Date>();
+  const [time, setTime] = useState('');
+  const [meetingLink, setMeetingLink] = useState('');
+  const [recurrence, setRecurrence] = useState('');
+
+  const handleProsseguir = () => {
+    console.log('Agendamento criado:', {
+      date,
+      time,
+      meetingLink,
+      recurrence
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header with sidebar trigger */}
+      <div className="flex items-center gap-4 p-4 border-b bg-white">
+        <SidebarTrigger />
+        <h1 className="text-xl font-semibold text-gray-900">Agendar reunião</h1>
+      </div>
+      
+      {/* Main content */}
+      <div className="py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          {/* Header Section */}
+          <div className="mb-12">
+            <h1 className="text-4xl font-bold text-indigo-600 mb-4">
+              Agendar reunião
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl leading-relaxed">
+              Aqui você importar do eu computador ou arrastar um arquivo.
+            </p>
+          </div>
+
+          {/* Form Section */}
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+            <div className="mb-8">
+              <h2 className="text-2xl font-semibold text-indigo-600 mb-2">
+                Insira os dados para agendar uma nova reunião
+              </h2>
+            </div>
+
+            <div className="space-y-6">
+              {/* Data e Horário */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Data */}
+                <div className="space-y-2">
+                  <Label className="text-base font-medium text-gray-700">
+                    Data
+                  </Label>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className={cn(
+                          "w-full justify-start text-left font-normal h-12 bg-indigo-600 text-white hover:bg-indigo-700 border-indigo-600",
+                          !date && "text-white"
+                        )}
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {date ? format(date, "dd/MM/yyyy") : "00/00/0000"}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={date}
+                        onSelect={setDate}
+                        initialFocus
+                        className="pointer-events-auto"
+                      />
+                    </PopoverContent>
+                  </Popover>
+                </div>
+
+                {/* Horário */}
+                <div className="space-y-2">
+                  <Label className="text-base font-medium text-gray-700">
+                    Horário
+                  </Label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <Clock className="h-4 w-4 text-white" />
+                    </div>
+                    <Input
+                      type="time"
+                      value={time}
+                      onChange={(e) => setTime(e.target.value)}
+                      className="h-12 pl-10 bg-indigo-600 border-indigo-600 text-white placeholder-white"
+                      placeholder="00:00"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Link da reunião */}
+              <div className="space-y-2">
+                <Label className="text-base font-medium text-gray-700">
+                  Link da reunião
+                </Label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <div className="w-4 h-4 bg-indigo-600 rounded-sm flex items-center justify-center">
+                      <div className="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                  </div>
+                  <Input
+                    type="url"
+                    value={meetingLink}
+                    onChange={(e) => setMeetingLink(e.target.value)}
+                    placeholder="Placeholder"
+                    className="h-12 pl-10 pr-12"
+                  />
+                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                    <Button
+                      type="button"
+                      size="sm"
+                      className="h-8 w-8 p-0 bg-indigo-600 hover:bg-indigo-700"
+                    >
+                      <Search className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Recorrência */}
+              <div className="space-y-2">
+                <Label className="text-base font-medium text-gray-700">
+                  Recorrência
+                </Label>
+                <Select value={recurrence} onValueChange={setRecurrence}>
+                  <SelectTrigger className="h-12">
+                    <SelectValue placeholder="Nunca" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="nunca">Nunca</SelectItem>
+                    <SelectItem value="diariamente">Diariamente</SelectItem>
+                    <SelectItem value="semanalmente">Semanalmente</SelectItem>
+                    <SelectItem value="mensalmente">Mensalmente</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Botão Prosseguir */}
+              <div className="flex justify-end pt-6">
+                <Button
+                  onClick={handleProsseguir}
+                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 text-base font-medium"
+                >
+                  <ArrowRight className="w-5 h-5 mr-2" />
+                  Prosseguir
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AgendarReuniao;

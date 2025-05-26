@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { SidebarTrigger } from '@/components/ui/sidebar';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
@@ -18,9 +17,8 @@ const NovaReuniao = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header with sidebar trigger */}
+      {/* Header */}
       <div className="flex items-center gap-4 p-4 border-b bg-white">
-        <SidebarTrigger />
         <h1 className="text-xl font-semibold text-gray-900">Nova reunião</h1>
       </div>
       

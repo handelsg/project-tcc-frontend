@@ -1,7 +1,7 @@
+
 import React from 'react';
 import { Video, Upload, Calendar, Clock, Settings } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { SidebarTrigger } from '@/components/ui/sidebar';
 import FeatureCard from '../components/FeatureCard';
 
 const Index = () => {
@@ -37,9 +37,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header with sidebar trigger */}
+      {/* Header */}
       <div className="flex items-center gap-4 p-4 border-b bg-white">
-        <SidebarTrigger />
         <h1 className="text-xl font-semibold text-gray-900">Dashboard</h1>
       </div>
       

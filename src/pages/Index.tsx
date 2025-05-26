@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Video, Upload, Calendar, Clock, Settings } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +16,7 @@ const Index = () => {
     {
       icon: Upload,
       title: "Upload de reunião",
-      onClick: () => console.log("Upload de reunião clicked")
+      onClick: () => navigate("/upload-reuniao")
     },
     {
       icon: Calendar,

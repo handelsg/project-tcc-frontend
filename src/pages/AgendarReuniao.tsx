@@ -7,7 +7,8 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Calendar as CalendarIcon, Clock, Search, Link, ChevronRight } from 'lucide-react';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Calendar as CalendarIcon, Clock, Search, Link, ChevronRight, ChevronDown } from 'lucide-react';
 import { format } from 'date-fns';
 import { cn } from '@/lib/utils';
 
@@ -16,7 +17,6 @@ const AgendarReuniao = () => {
   const [time, setTime] = useState('');
   const [meetingLink, setMeetingLink] = useState('');
   const [recurrence, setRecurrence] = useState('');
-  const [isTimeInputFocused, setIsTimeInputFocused] = useState(false);
 
   // Generate time options in 30-minute intervals
   const generateTimeOptions = () => {
@@ -119,29 +119,47 @@ const AgendarReuniao = () => {
                     Horário
                   </Label>
                   <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
-                      <div className="h-8 w-8 bg-indigo-600 rounded flex items-center justify-center">
-                        <Clock className="h-4 w-4 text-white" />
-                      </div>
-                    </div>
-                    <Input
-                      type="time"
-                      value={time}
-                      onChange={handleTimeInputChange}
-                      onFocus={() => setIsTimeInputFocused(true)}
-                      onBlur={() => setIsTimeInputFocused(false)}
-                      className="h-12 pl-14 pr-4 bg-white border-gray-300 text-gray-900 placeholder-gray-500 rounded-lg"
-                      placeholder="00:00"
-                      list="time-suggestions"
-                    />
-                    <datalist id="time-suggestions">
-                      {timeOptions.map((timeOption) => (
-                        <option key={timeOption} value={timeOption} />
-                      ))}
-                    </datalist>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button
+                          variant="outline"
+                          className="w-full justify-start text-left font-normal h-12 bg-white border-gray-300 text-gray-900 hover:bg-gray-50 rounded-lg"
+                        >
+                          <div className="mr-3 h-8 w-8 bg-indigo-600 rounded flex items-center justify-center">
+                            <Clock className="h-4 w-4 text-white" />
+                          </div>
+                          <span className={cn("flex-1", !time && "text-gray-500")}>
+                            {time || "Selecione o horário"}
+                          </span>
+                          <ChevronDown className="h-4 w-4 opacity-50" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-full max-h-60 overflow-y-auto bg-white border border-gray-200 shadow-lg z-50">
+                        <div className="p-2">
+                          <Input
+                            type="time"
+                            value={time}
+                            onChange={handleTimeInputChange}
+                            className="w-full mb-2"
+                            placeholder="Digite um horário personalizado"
+                          />
+                        </div>
+                        <div className="border-t border-gray-100">
+                          {timeOptions.map((timeOption) => (
+                            <DropdownMenuItem
+                              key={timeOption}
+                              onClick={() => handleTimeSelect(timeOption)}
+                              className="cursor-pointer hover:bg-gray-50"
+                            >
+                              {timeOption}
+                            </DropdownMenuItem>
+                          ))}
+                        </div>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </div>
                   <p className="text-xs text-gray-500">
-                    Digite um horário ou selecione das sugestões
+                    Selecione um horário da lista ou digite um horário personalizado
                   </p>
                 </div>
               </div>

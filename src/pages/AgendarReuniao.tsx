@@ -17,6 +17,20 @@ const AgendarReuniao = () => {
   const [meetingLink, setMeetingLink] = useState('');
   const [recurrence, setRecurrence] = useState('');
 
+  // Generate time options in 30-minute intervals
+  const generateTimeOptions = () => {
+    const times = [];
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute += 30) {
+        const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+        times.push(timeString);
+      }
+    }
+    return times;
+  };
+
+  const timeOptions = generateTimeOptions();
+
   const handleProsseguir = () => {
     console.log('Agendamento criado:', {
       date,
@@ -95,20 +109,23 @@ const AgendarReuniao = () => {
                   <Label className="text-sm font-medium text-gray-700">
                     Horário
                   </Label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <div className="h-8 w-8 bg-indigo-600 rounded flex items-center justify-center">
-                        <Clock className="h-4 w-4 text-white" />
+                  <Select value={time} onValueChange={setTime}>
+                    <SelectTrigger className="h-12 border-gray-300 rounded-lg bg-white">
+                      <div className="flex items-center w-full">
+                        <div className="mr-3 h-8 w-8 bg-indigo-600 rounded flex items-center justify-center flex-shrink-0">
+                          <Clock className="h-4 w-4 text-white" />
+                        </div>
+                        <SelectValue placeholder="00:00" className="text-gray-500" />
                       </div>
-                    </div>
-                    <Input
-                      type="time"
-                      value={time}
-                      onChange={(e) => setTime(e.target.value)}
-                      className="h-12 pl-14 bg-white border-gray-300 text-gray-900 placeholder-gray-500 rounded-lg"
-                      placeholder="00:00"
-                    />
-                  </div>
+                    </SelectTrigger>
+                    <SelectContent className="max-h-60">
+                      {timeOptions.map((timeOption) => (
+                        <SelectItem key={timeOption} value={timeOption}>
+                          {timeOption}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
               </div>
 

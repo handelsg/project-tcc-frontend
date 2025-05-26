@@ -61,43 +61,43 @@ const AppSidebar = () => {
 
   return (
     <div 
-      className="h-full bg-gradient-to-b from-slate-800 to-slate-900"
+      className="h-full bg-gradient-to-br from-emerald-800 via-teal-800 to-green-900 m-2 rounded-2xl shadow-2xl border border-emerald-700/30"
     >
       <Sidebar 
         className="border-none !bg-transparent"
         collapsible="icon"
       >
-        <SidebarHeader className="p-4">
+        <SidebarHeader className="p-6">
           <div className="flex items-center justify-between">
             {!isCollapsed && (
               <div className="text-white">
-                <div className="text-lg font-bold">HS</div>
-                <div className="text-sm opacity-90">Handel Santana</div>
+                <div className="text-xl font-bold bg-gradient-to-r from-emerald-300 to-teal-300 bg-clip-text text-transparent">HS</div>
+                <div className="text-sm opacity-90 text-emerald-100">Handel Santana</div>
               </div>
             )}
             <button 
               onClick={toggleSidebar}
-              className="p-2 bg-white/10 rounded-lg hover:bg-white/20 transition-colors ml-auto backdrop-blur-sm"
+              className="p-2.5 bg-emerald-600/30 rounded-xl hover:bg-emerald-600/50 transition-all ml-auto backdrop-blur-sm border border-emerald-500/20 shadow-lg"
             >
               {isCollapsed ? (
-                <ArrowRight className="w-5 h-5 text-white" />
+                <ArrowRight className="w-5 h-5 text-emerald-100" />
               ) : (
-                <ArrowLeft className="w-5 h-5 text-white" />
+                <ArrowLeft className="w-5 h-5 text-emerald-100" />
               )}
             </button>
           </div>
-          {!isCollapsed && <div className="border-t border-white/20 mt-4"></div>}
+          {!isCollapsed && <div className="border-t border-emerald-400/30 mt-6 shadow-sm"></div>}
         </SidebarHeader>
 
-        <SidebarContent className="px-2">
-          <SidebarMenu className="space-y-1">
+        <SidebarContent className="px-3">
+          <SidebarMenu className="space-y-2">
             {menuItems.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
-                  className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg transition-all cursor-pointer ${
+                  className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all cursor-pointer shadow-md ${
                     location.pathname === item.path
-                      ? 'bg-blue-500/20 text-blue-100 shadow-sm border border-blue-400/30'
-                      : 'text-white hover:bg-white/10 hover:backdrop-blur-sm'
+                      ? 'bg-emerald-500/30 text-emerald-50 shadow-lg border border-emerald-400/40 backdrop-blur-sm'
+                      : 'text-emerald-100 hover:bg-emerald-600/20 hover:backdrop-blur-sm hover:shadow-lg hover:border hover:border-emerald-500/20'
                   } ${isCollapsed ? 'justify-center' : ''}`}
                   tooltip={isCollapsed ? item.title : undefined}
                   onClick={() => handleMenuClick(item.path)}
@@ -110,15 +110,15 @@ const AppSidebar = () => {
           </SidebarMenu>
         </SidebarContent>
 
-        <SidebarFooter className="px-2 pb-4">
-          <SidebarMenu className="space-y-1">
+        <SidebarFooter className="px-3 pb-6">
+          <SidebarMenu className="space-y-2">
             {bottomMenuItems.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton 
-                  className={`w-full flex items-center gap-3 px-3 py-3 rounded-lg transition-all cursor-pointer ${
+                  className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all cursor-pointer shadow-md ${
                     location.pathname === item.path
-                      ? 'bg-blue-500/20 text-blue-100 shadow-sm border border-blue-400/30'
-                      : 'text-white hover:bg-white/10 hover:backdrop-blur-sm'
+                      ? 'bg-emerald-500/30 text-emerald-50 shadow-lg border border-emerald-400/40 backdrop-blur-sm'
+                      : 'text-emerald-100 hover:bg-emerald-600/20 hover:backdrop-blur-sm hover:shadow-lg hover:border hover:border-emerald-500/20'
                   } ${isCollapsed ? 'justify-center' : ''}`}
                   tooltip={isCollapsed ? item.title : undefined}
                   onClick={() => handleMenuClick(item.path)}

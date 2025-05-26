@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -140,16 +141,16 @@ const Historico = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="h-screen bg-gray-50 flex flex-col overflow-hidden">
       {/* Header */}
-      <div className="flex items-center gap-4 p-4 border-b bg-white">
+      <div className="flex items-center gap-4 p-4 border-b bg-white flex-shrink-0">
         <h1 className="text-xl font-semibold text-gray-900">Histórico</h1>
       </div>
       
       {/* Main content */}
-      <div className="p-4">
+      <div className="flex-1 flex flex-col p-4 overflow-hidden">
         {/* Reuniões List */}
-        <div className="space-y-6">
+        <div className="flex-1 space-y-4 overflow-y-auto">
           {currentReunioes.map((reuniao) => (
             <div key={reuniao.id} className="bg-white rounded-lg shadow-sm border border-gray-200">
               {/* Reunião Header */}
@@ -243,7 +244,7 @@ const Historico = () => {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="mt-8 flex justify-center">
+          <div className="mt-4 flex justify-center flex-shrink-0">
             <Pagination>
               <PaginationContent>
                 <PaginationItem>
@@ -285,11 +286,6 @@ const Historico = () => {
             </Pagination>
           </div>
         )}
-
-        {/* Info sobre paginação */}
-        <div className="mt-4 text-center text-sm text-gray-500">
-          Mostrando {indexOfFirstItem + 1} a {Math.min(indexOfLastItem, reunioes.length)} de {reunioes.length} reuniões
-        </div>
       </div>
     </div>
   );

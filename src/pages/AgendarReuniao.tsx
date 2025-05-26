@@ -16,6 +16,7 @@ const AgendarReuniao = () => {
   const [time, setTime] = useState('');
   const [meetingLink, setMeetingLink] = useState('');
   const [recurrence, setRecurrence] = useState('');
+  const [isTimeInputFocused, setIsTimeInputFocused] = useState(false);
 
   // Generate time options in 30-minute intervals
   const generateTimeOptions = () => {
@@ -30,6 +31,14 @@ const AgendarReuniao = () => {
   };
 
   const timeOptions = generateTimeOptions();
+
+  const handleTimeSelect = (selectedTime: string) => {
+    setTime(selectedTime);
+  };
+
+  const handleTimeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTime(e.target.value);
+  };
 
   const handleProsseguir = () => {
     console.log('Agendamento criado:', {
@@ -109,23 +118,31 @@ const AgendarReuniao = () => {
                   <Label className="text-sm font-medium text-gray-700">
                     Horário
                   </Label>
-                  <Select value={time} onValueChange={setTime}>
-                    <SelectTrigger className="h-12 border-gray-300 rounded-lg bg-white">
-                      <div className="flex items-center w-full">
-                        <div className="mr-3 h-8 w-8 bg-indigo-600 rounded flex items-center justify-center flex-shrink-0">
-                          <Clock className="h-4 w-4 text-white" />
-                        </div>
-                        <SelectValue placeholder="00:00" className="text-gray-500" />
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
+                      <div className="h-8 w-8 bg-indigo-600 rounded flex items-center justify-center">
+                        <Clock className="h-4 w-4 text-white" />
                       </div>
-                    </SelectTrigger>
-                    <SelectContent className="max-h-60">
+                    </div>
+                    <Input
+                      type="time"
+                      value={time}
+                      onChange={handleTimeInputChange}
+                      onFocus={() => setIsTimeInputFocused(true)}
+                      onBlur={() => setIsTimeInputFocused(false)}
+                      className="h-12 pl-14 pr-4 bg-white border-gray-300 text-gray-900 placeholder-gray-500 rounded-lg"
+                      placeholder="00:00"
+                      list="time-suggestions"
+                    />
+                    <datalist id="time-suggestions">
                       {timeOptions.map((timeOption) => (
-                        <SelectItem key={timeOption} value={timeOption}>
-                          {timeOption}
-                        </SelectItem>
+                        <option key={timeOption} value={timeOption} />
                       ))}
-                    </SelectContent>
-                  </Select>
+                    </datalist>
+                  </div>
+                  <p className="text-xs text-gray-500">
+                    Digite um horário ou selecione das sugestões
+                  </p>
                 </div>
               </div>
 

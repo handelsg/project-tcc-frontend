@@ -78,7 +78,6 @@ const Historico = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
 
-  // Calcular reuniões para a página atual
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentReunioes = reunioes.slice(indexOfFirstItem, indexOfLastItem);
